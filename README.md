@@ -1,8 +1,8 @@
 # team-profile-generator
 
 ## Screenshot
-![Alt text](./assets/images/Screenshot-terminal.PNG "Screenshot")
-![Alt text](./assets/images/Screenshot-webpage.PNG "Screenshot")
+![Alt text](./assets/images/Screenshot-terminal.PNG?raw=true "Terminal")
+![Alt text](./assets/images/Screenshot-webpage.PNG?raw=true "Webpage")
 
 ## Purpose
 To generate a webpage that displays my team's basic info
