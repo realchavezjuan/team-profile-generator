@@ -3,6 +3,7 @@
 ## Screenshot
 ![Alt text](/assets/images/Screenshot-terminal.PNG?raw=true "Terminal")
 ![Alt text](/assets/images/Screenshot-webpage.PNG?raw=true "Webpage")
+![Alt text](/assets/images/Screenshot-test.PNG?raw=true "Test")
 
 ## Purpose
 To generate a webpage that displays my team's basic info
