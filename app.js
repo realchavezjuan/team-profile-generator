@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
-const Employee = require('./lib/Employee');
+const { writeFile } = require('./utils/generate-site.js');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+const generateHTML = require('./src/page-template.js')
 var employeeObjectArray = [];
+
 const initialPrompt = ()=> {
 
     console.log(`
@@ -40,7 +42,6 @@ const initialPrompt = ()=> {
         console.log(manager);
         employeeObjectArray.push(manager);
         return employeeObjectArray;
-        //engineersPrompt();
     });
 };
 
@@ -64,7 +65,7 @@ const engineersPrompt = () =>{
         },
         {
             type: 'text',
-            name: 'office',
+            name: 'github',
             message: 'What is their GitHub username?'
         },
     ])
@@ -142,7 +143,13 @@ const internPrompt = () => {
     });
 }
 
+const test = (array) => {
+    const [manager, engineer, intern] = array;
+    return manager;
+}
+
 initialPrompt()
     .then(engineersPrompt)
     .then(internPrompt)
-    .then(data => {console.log(data)});
+    .then(data => {return (generateHTML(data))})
+    .then(htmlTemplate => {writeFile(htmlTemplate)})
