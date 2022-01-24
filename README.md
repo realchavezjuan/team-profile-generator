@@ -15,8 +15,11 @@ so that I have quick access to their emails and GitHub profiles
 - JavaScript
 - Node
 
-## Website
+## Github Repo
 https://github.com/realchavezjuan/team-profile-generator
+
+## Video Walkthrough
+https://watch.screencastify.com/v/d3hXscQy7I9Iv2H3O2kv
 
 ## Contribution
 Made by Juan C. Chavez
