@@ -3,8 +3,8 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-
-function initialPrompt () {
+var employeeObjectArray = [];
+const initialPrompt = ()=> {
 
     console.log(`
     ======================
@@ -12,7 +12,7 @@ function initialPrompt () {
     ======================
     `);
 
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'text',
             name: 'name',
@@ -37,14 +37,16 @@ function initialPrompt () {
     ])
     .then(data => {
         const manager = new Manager(data.name, data.id, data.email, data.office);
-        console.log(manager.getRole());
-        engineersPrompt();
+        console.log(manager);
+        employeeObjectArray.push(manager);
+        return employeeObjectArray;
+        //engineersPrompt();
     });
-}
+};
 
-function engineersPrompt () {
+const engineersPrompt = () =>{
 
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'text',
             name: 'name',
@@ -63,34 +65,37 @@ function engineersPrompt () {
         {
             type: 'text',
             name: 'office',
-            message: 'What number is their GitHub username?'
-        }
+            message: 'What is their GitHub username?'
+        },
     ])
     .then(data => {
         const engineer = new Engineer(data.name, data.id, data.email, data.github);
-        console.log(engineer.getRole());
-        inquirer.prompt(
-            {
-                type: 'confirm',
-                name: 'confirmAdd',
-                message: 'Is there another engineer in your team?'
-            }
-        )
-        .then(data => {
-            // if answer is yes to previous question, repeat the prompt
-            if (data.confirmAdd){
-                engineersPrompt();
-            }
-            else{
-                internPrompt();
-            }
-        })
-    });
-}
+        console.log(engineer);
+        employeeObjectArray.push(engineer);
+        return employeeObjectArray;
+    })
+    // .then({
+    //     return inquirer.prompt(
+    //         {
+    //             type: 'confirm',
+    //             name: 'confirmAdd',
+    //             message: 'Is there another engineer in your team?'
+    //         }
+    //     )
+    //     .then(data => {
+    //         // if answer is yes to previous question, repeat the prompt
+    //         if (data.confirmAdd){
+    //             engineersPrompt();
+    //         }
+    //         return false;
+    //     })
+        
+    // });
+};
 
-function internPrompt () {
+const internPrompt = () => {
 
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'text',
             name: 'name',
@@ -115,21 +120,29 @@ function internPrompt () {
     ])
     .then(data => {
         const intern = new Intern(data.name, data.id, data.email, data.school);
-        console.log(intern.getRole());
-        inquirer.prompt(
-            {
-                type: 'confirm',
-                name: 'confirmAdd',
-                message: 'Is there another intern in your team?'
-            }
-        )
-        .then(data => {
-            // if answer is yes to previous question, repeat the prompt
-            if (data.confirmAdd){
-                internPrompt();
-            }
-        })
+        console.log(intern);
+        employeeObjectArray.push(intern);
+        return employeeObjectArray;
+        // return inquirer.prompt(
+        //     {
+        //         type: 'confirm',
+        //         name: 'confirmAdd',
+        //         message: 'Is there another intern in your team?'
+        //     }
+        // )
+        // .then(data => {
+        //     // if answer is yes to previous question, repeat the prompt
+        //     if (data.confirmAdd){
+        //         internPrompt();
+        //     }
+        //     else{
+        //         return employeeObjectArray;
+        //     }
+        // })
     });
 }
 
-initialPrompt();
+initialPrompt()
+    .then(engineersPrompt)
+    .then(internPrompt)
+    .then(data => {console.log(data)});
