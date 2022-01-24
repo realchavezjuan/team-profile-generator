@@ -39,9 +39,8 @@ const initialPrompt = ()=> {
     ])
     .then(data => {
         const manager = new Manager(data.name, data.id, data.email, data.office);
-        console.log(manager);
         employeeObjectArray.push(manager);
-        return employeeObjectArray;
+        
     });
 };
 
@@ -71,9 +70,8 @@ const engineersPrompt = () =>{
     ])
     .then(data => {
         const engineer = new Engineer(data.name, data.id, data.email, data.github);
-        console.log(engineer);
         employeeObjectArray.push(engineer);
-        return employeeObjectArray;
+        menuPrompt();
     })
     // .then({
     //     return inquirer.prompt(
@@ -121,9 +119,8 @@ const internPrompt = () => {
     ])
     .then(data => {
         const intern = new Intern(data.name, data.id, data.email, data.school);
-        console.log(intern);
         employeeObjectArray.push(intern);
-        return employeeObjectArray;
+        menuPrompt();
         // return inquirer.prompt(
         //     {
         //         type: 'confirm',
@@ -143,19 +140,33 @@ const internPrompt = () => {
     });
 }
 
-function menuPrompt() {
-    inquirer.prompt([
+const menuPrompt = () => {
+    return inquirer.prompt([
         {
             type: 'list',
-            name: 'menu',
+            name: 'choice',
             message: 'What do you want to do?',
             choices: ['Add an engineer', 'Add an intern', 'Submit my team profile']
         },
     ])
+    .then(option => {
+        // display employees in array
+        if (option.choice === 'Add an engineer'){
+            engineersPrompt();
+        }
+        if (option.choice === 'Add an intern'){
+            internPrompt();
+        }
+        else {
+            return employeeObjectArray;
+        }
+    })
 }
 
 initialPrompt()
-    .then(engineersPrompt)
-    .then(internPrompt)
+    .then(menuPrompt)
     .then(data => {return (generateHTML(data))})
     .then(htmlTemplate => {writeFile(htmlTemplate)})
+    .catch(err => {
+        console.log(err);
+    });

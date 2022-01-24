@@ -1,3 +1,5 @@
+var engineersArray=[];
+var internsArray=[];
 const createManagerCard = (manager) => {
     return `<section class="manager-card">
             <h2>${manager.name}</h2>
@@ -9,15 +11,20 @@ const createManagerCard = (manager) => {
     `;
 }
 
-function createEngineerCard (engineer) {
-    return `<section class="manager-card">
+function createEngineerCard (engineersArray) {
+    let engineersHTML;
+    for(let i = 0; i < engineersArray.length; i++) {
+        let engineer = engineersArray[i];
+        engineersHTML += `<section class="manager-card">
             <h2>${engineer.name}</h2>
             <h3>Engineer</h3>
             <h4>Id: ${engineer.id}</h4>
             <a href="${engineer.email}">Email: ${engineer.email}</a> <br>
             <a href="https://github.com/${engineer.gitHub}">github.com/${engineer.gitHub}</a>
         </section>
-    `;
+        `;
+    }
+    return engineersHTML;
 }
 function createInternCard (intern) {
     return `<section class="manager-card">
@@ -30,8 +37,21 @@ function createInternCard (intern) {
     `;
 }
 
-module.exports = promptData => {
-    const [manager, engineer, intern] = promptData;
+module.exports = promptArray => {
+    
+    for (let i = 0; i < promptArray.length; i++) {
+        console.log(promptArray[i]);
+        var employee = promptArray[i];
+        if (employee.getRole()=== 'Engineer'){
+            var manager = employee;
+        }
+        if (employee.getRole()=== 'Engineer'){
+            engineersArray.push(employee);
+        }
+        if (employee.getRole()=== 'Intern'){
+            internsArray.push(employee);
+        }
+    }
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +67,8 @@ module.exports = promptData => {
     </header>
     <main class="display-area">
         ${createManagerCard(manager)}
-        ${createEngineerCard(engineer)}
-        ${createInternCard(intern)}
+        ${createEngineerCard(engineersArray)}
+        ${createInternCard(internsArray)}
     </main>
 </body>
 </html>
