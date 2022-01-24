@@ -143,9 +143,15 @@ const internPrompt = () => {
     });
 }
 
-const test = (array) => {
-    const [manager, engineer, intern] = array;
-    return manager;
+function menuPrompt() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'menu',
+            message: 'What do you want to do?',
+            choices: ['Add an engineer', 'Add an intern', 'Submit my team profile']
+        },
+    ])
 }
 
 initialPrompt()

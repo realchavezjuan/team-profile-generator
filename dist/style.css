@@ -1,7 +1,12 @@
 
+body{
+    background-color: darkgray;
+}
 header{
-    background-color: darkred;
-    color: white ;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: greenyellow;
+    color: darkblue ;
     text-align: center;
     font-size: 45px;
     padding: 20px;
@@ -13,8 +18,8 @@ main{
 }
 
 section{
-    background-color: darkblue;
-    color: white;
+    background-color: greenyellow;
+    color: darkblue;
     margin: 20px;
     padding: 20px;
     border: 2px solid black;
