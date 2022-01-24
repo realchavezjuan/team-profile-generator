@@ -1,0 +1,22 @@
+
+header{
+    background-color: darkred;
+    color: white ;
+    text-align: center;
+    font-size: 45px;
+    padding: 20px;
+}
+
+main{
+    display: flex;
+    justify-content: space-around;
+}
+
+section{
+    background-color: darkblue;
+    color: white;
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
