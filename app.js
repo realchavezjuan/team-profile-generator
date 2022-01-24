@@ -40,7 +40,7 @@ const initialPrompt = ()=> {
     .then(data => {
         const manager = new Manager(data.name, data.id, data.email, data.office);
         employeeObjectArray.push(manager);
-        
+        return menuPrompt();
     });
 };
 
@@ -71,7 +71,7 @@ const engineersPrompt = () =>{
     .then(data => {
         const engineer = new Engineer(data.name, data.id, data.email, data.github);
         employeeObjectArray.push(engineer);
-        menuPrompt();
+        return menuPrompt();
     })
     // .then({
     //     return inquirer.prompt(
@@ -120,7 +120,7 @@ const internPrompt = () => {
     .then(data => {
         const intern = new Intern(data.name, data.id, data.email, data.school);
         employeeObjectArray.push(intern);
-        menuPrompt();
+        return menuPrompt();
         // return inquirer.prompt(
         //     {
         //         type: 'confirm',
@@ -152,10 +152,10 @@ const menuPrompt = () => {
     .then(option => {
         // display employees in array
         if (option.choice === 'Add an engineer'){
-            engineersPrompt();
+            return engineersPrompt();
         }
         if (option.choice === 'Add an intern'){
-            internPrompt();
+            return internPrompt();
         }
         else {
             return employeeObjectArray;
@@ -164,7 +164,7 @@ const menuPrompt = () => {
 }
 
 initialPrompt()
-    .then(menuPrompt)
+    //.then(menuPrompt)
     .then(data => {return (generateHTML(data))})
     .then(htmlTemplate => {writeFile(htmlTemplate)})
     .catch(err => {

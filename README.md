@@ -1,5 +1,9 @@
 # team-profile-generator
 
+## Screenshot
+![Alt text](/assets/images/Screenshot-terminal "Screenshot")
+![Alt text](/assets/images/Screenshot-webpage "Screenshot")
+
 ## Purpose
 To generate a webpage that displays my team's basic info
 so that I have quick access to their emails and GitHub profiles
